@@ -1,4 +1,4 @@
-package com.jetbrains;
+package max;
 
 public class Elementary {
     public static void sort(Comparable[] a) {}

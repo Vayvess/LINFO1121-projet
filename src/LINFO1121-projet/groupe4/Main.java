@@ -2,8 +2,10 @@ package groupe4;
 
 
 import francois.ImprovedQuickSort;
+import groupe4.part1.Merge;
 import groupe4.part1.Quick;
 import raph.QuickSort;
+import max.improvedMergeSort;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -18,6 +20,16 @@ public class Main {
             }
         }
         return true;
+    }
+
+    public static void ImprovedMergeSort(Integer[] array){
+        long start = System.nanoTime();
+        improvedMergeSort.sort(array, 50);
+        long end = System.nanoTime();
+
+        long elapsedTime = end - start;
+        double elapsedTimeInSecond = (double) elapsedTime / 1_000_000_000;
+        System.out.println("ImprovedMergeSort has taken " + elapsedTimeInSecond + " seconds");
     }
 
     public static void ImprovedQuickSort(Integer[] array){
@@ -48,6 +60,16 @@ public class Main {
         long elapsedTime = end - start;
         double elapsedTimeInSecond = (double) elapsedTime / 1_000_000_000;
         System.out.println("BookQuickSort has taken " + elapsedTimeInSecond + " seconds");
+    }
+
+    public static void BookMergeSort(Integer[] array){
+        long start = System.nanoTime();
+        Merge.sort(array);
+        long end = System.nanoTime();
+
+        long elapsedTime = end - start;
+        double elapsedTimeInSecond = (double) elapsedTime / 1_000_000_000;
+        System.out.println("BookMergeSort has taken " + elapsedTimeInSecond + " seconds");
     }
 
     public static void ParallelMergeSort(Integer[] array){
@@ -81,12 +103,20 @@ public class Main {
             main[i] = rng.nextInt(999_999);
         }
 
-        /*
+        System.out.println("The sample has size " + size);
         Integer[] ImprovedQuickSortTest = new Integer[size];
         System.arraycopy(main, 0, ImprovedQuickSortTest, 0, size);
         ImprovedQuickSort(ImprovedQuickSortTest);
-         */
 
+        Integer[] ImprovedMergeSortTest = new Integer[size];
+        System.arraycopy(main, 0, ImprovedMergeSortTest, 0, size);
+        ImprovedMergeSort(ImprovedMergeSortTest);
+        System.out.println(isArraySorted(ImprovedMergeSortTest));
+
+        Integer[] BookMergeSortTest = new Integer[size];
+        System.arraycopy(main, 0, BookMergeSortTest, 0, size);
+        BookMergeSort(BookMergeSortTest);
+        System.out.println(isArraySorted(BookMergeSortTest));
 
 
         Integer[] BookQuickSortTest = new Integer[size];

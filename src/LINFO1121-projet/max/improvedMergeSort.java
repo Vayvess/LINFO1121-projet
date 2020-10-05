@@ -1,4 +1,4 @@
-package com.jetbrains;
+package max;
 
 import java.util.ArrayList;
 import java.util.Arrays;
