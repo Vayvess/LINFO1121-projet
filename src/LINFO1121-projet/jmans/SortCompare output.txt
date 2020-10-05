@@ -1,0 +1,2 @@
+For 50000 random Doubles
+ My is 1.7 times faster than Book
