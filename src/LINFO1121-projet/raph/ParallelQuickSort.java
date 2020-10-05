@@ -19,45 +19,47 @@ public class ParallelQuickSort<T> extends RecursiveAction {
     }
 
     private int parallelPartition(){
-        int i = lo;
-        T x = array[hi];
-        for (int j = lo; j < hi; j++) {
-            if(comp.compare(array[j], x) < 1){
+        int i = lo, j = hi + 1;
+        T pvt = array[lo];
+        while(i < j){
+            while(comp.compare(array[++i], pvt) < 0 && i < hi);
+            while(comp.compare(pvt, array[--j]) < 0 && j > lo);
+            if(i < j){
                 T tmp = array[i];
                 array[i] = array[j];
                 array[j] = tmp;
-                i++;
             }
         }
-        T tmp = array[i];
-        array[i] = array[hi];
-        array[hi] = tmp;
-        return i;
+        T tmp = array[lo];
+        array[lo] = array[j];
+        array[j] = tmp;
+        return j;
     }
 
-    private int partition(int bas, int haut){
-        int i = bas;
-        T x = array[haut];
-        for (int j = bas; j < haut; j++) {
-            if(comp.compare(array[j], x) < 1){
+    private int partition(int lo, int hi){
+        int i = lo, j = hi + 1;
+        T pvt = array[lo];
+        while(i < j){
+            while(comp.compare(array[++i], pvt) < 0 && i < hi);
+            while(comp.compare(pvt, array[--j]) < 0 && j > lo);
+            if(i < j){
                 T tmp = array[i];
                 array[i] = array[j];
                 array[j] = tmp;
-                i++;
             }
         }
-        T tmp = array[i];
-        array[i] = array[haut];
-        array[haut] = tmp;
-        return i;
+        T tmp = array[lo];
+        array[lo] = array[j];
+        array[j] = tmp;
+        return j;
     }
 
-    private void quickSort(int bas, int haut){
-        if(bas < haut){
-            int pos = partition(bas, haut);
+    private void quickSort(int lo, int hi){
+        if(lo < hi){
+            int pos = partition(lo, hi);
             if(pos < 0) return;
-            quickSort(bas, pos - 1);
-            quickSort(pos + 1, haut);
+            quickSort(lo, pos - 1);
+            quickSort(pos + 1, hi);
         }
     }
 

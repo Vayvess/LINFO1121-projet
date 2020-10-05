@@ -7,7 +7,7 @@ public class MyInsertionSort {
         int e;
         for (e = 1; e < a.length; e++) {
             if(Helper.less(a[e],a[min])) min = e;
-        }Helper.exch(a,min,0);
+        }Helper.exch(a, min, 0);
         for (int i = 1; i < N; i++) {
             Comparable ith = a[i];
             int j;

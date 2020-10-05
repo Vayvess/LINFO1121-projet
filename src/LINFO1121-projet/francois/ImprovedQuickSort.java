@@ -1,3 +1,5 @@
+package francois;
+
 import java.util.Collections;
 import java.util.Random;
 import java.util.Random.*;

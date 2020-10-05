@@ -12,6 +12,7 @@ public class SortCompare {
         if (alg.equals("Quick")) Quick.sort(a);
         return (System.nanoTime()-start);
     }
+
     public static double timeRandomInput(String alg, int N, int T) {
         double total = 0.0;
         Double[] a = new Double[N];
@@ -22,6 +23,7 @@ public class SortCompare {
         }
         return total;
     }
+
     public static void main(String[] args) {
         String alg1 = "Shell";
         String alg2 = "Merge";

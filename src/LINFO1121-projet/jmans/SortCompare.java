@@ -1,3 +1,5 @@
+package jmans;
+
 import java.util.Random;
 
 public class SortCompare {

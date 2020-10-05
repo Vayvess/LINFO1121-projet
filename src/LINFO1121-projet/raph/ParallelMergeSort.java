@@ -16,7 +16,8 @@ public class ParallelMergeSort<E> extends RecursiveAction {
     private void sort(int lo, int hi){
         if (hi <= lo) return;
         int mid = (lo + hi) / 2;
-        sort(lo, mid); sort(mid + 1, hi);
+        sort(lo, mid);
+        sort(mid + 1, hi);
         merge(lo, mid, hi);
     }
 
