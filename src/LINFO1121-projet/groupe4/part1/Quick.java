@@ -1,3 +1,4 @@
+package groupe4.part1;
 import java.util.Collections;
 
 public class Quick extends GenericSort{

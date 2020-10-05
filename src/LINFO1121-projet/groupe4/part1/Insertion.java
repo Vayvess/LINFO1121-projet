@@ -1,4 +1,7 @@
-public class Insertion extends GenericSort{
+package groupe4.part1;
+import groupe4.part1.GenericSort;
+
+public class Insertion extends GenericSort {
     public static void sort(Comparable[] a)
     { // Sort a[] into increasing order.
         int N = a.length;

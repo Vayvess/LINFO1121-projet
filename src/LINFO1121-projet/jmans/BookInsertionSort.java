@@ -1,3 +1,5 @@
+package jmans;
+
 public class BookInsertionSort {
     public static void sort(Comparable[] a) {
         int N = a.length;

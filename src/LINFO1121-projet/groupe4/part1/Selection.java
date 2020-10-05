@@ -1,3 +1,5 @@
+package groupe4.part1;
+
 public class Selection extends GenericSort{
     public static void sort(Comparable[] a) {
         int N = a.length;

@@ -1,4 +1,4 @@
-/******************************************************************************
+package groupe4.part1; /******************************************************************************
  *  Compilation:  javac StdDraw.java
  *  Execution:    java StdDraw
  *  Dependencies: none

@@ -1,3 +1,5 @@
+package groupe4.part1;
+
 import java.util.Random;
 
 public class SortCompare {

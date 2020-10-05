@@ -1,4 +1,8 @@
-public class Merge extends GenericSort{
+package groupe4.part1;
+
+import groupe4.part1.GenericSort;
+
+public class Merge extends GenericSort {
     public static void merge(Comparable[] a, int lo, int mid, int hi) {
         int i = lo, j = mid+1;
         for (int k = lo; k <= hi; k++)
