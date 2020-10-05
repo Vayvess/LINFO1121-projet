@@ -32,7 +32,6 @@ public class Quick extends GenericSort{
     }
 
     public static void sort(Comparable[] a){
-        shuffle(a);
         sort(a, 0, a.length - 1);
     }
 }

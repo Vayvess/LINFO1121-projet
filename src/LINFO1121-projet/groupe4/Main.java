@@ -32,7 +32,7 @@ public class Main {
 
     public static void RaphaelQuickSort(Integer[] array){
         long start = System.nanoTime();
-        QuickSort.sort(array, Comparator.comparing(Integer::intValue));
+        QuickSort.sort(array);
         long end = System.nanoTime();
 
         long elapsedTime = end - start;
@@ -52,8 +52,7 @@ public class Main {
 
     public static void ParallelMergeSort(Integer[] array){
         raph.ParallelMergeSort<Integer> task =
-                new raph.ParallelMergeSort<>(array, 0, array.length -1, new Integer[array.length],
-                        Comparator.comparing(Integer::intValue));
+                new raph.ParallelMergeSort<>(array, 0, array.length -1, new Integer[array.length]);
 
         long start = System.nanoTime();
         new ForkJoinPool().invoke(task);
@@ -65,10 +64,7 @@ public class Main {
     }
 
     public static void ParallelQuickSort(Integer[] array){
-        raph.ParallelQuickSort<Integer> task =
-                new raph.ParallelQuickSort<Integer>(array, 0, array.length - 1,
-                        Comparator.comparing(Integer::intValue));
-
+        raph.ParallelQuickSort<Integer> task = new raph.ParallelQuickSort<Integer>(array, 0, array.length - 1);
         long start = System.nanoTime();
         new ForkJoinPool().invoke(task);
         long end = System.nanoTime();
@@ -79,15 +75,18 @@ public class Main {
     }
 
     public static void main(String[] args){
-        int size = 5_000_000; Random rng = new Random();
+        int size = 10_000_000; Random rng = new Random();
         Integer[] main = new Integer[size];
         for(int i = 0 ; i < size ; i++){
             main[i] = rng.nextInt(999_999);
         }
 
+        /*
         Integer[] ImprovedQuickSortTest = new Integer[size];
         System.arraycopy(main, 0, ImprovedQuickSortTest, 0, size);
         ImprovedQuickSort(ImprovedQuickSortTest);
+         */
+
 
 
         Integer[] BookQuickSortTest = new Integer[size];

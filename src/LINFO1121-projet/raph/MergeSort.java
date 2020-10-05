@@ -8,6 +8,6 @@ public class MergeSort {
     }
 
     public static <T> void sort(T[] array, Comparator<? super T> comp){
-        mergeSort(array, new T[array.length], comp, 0, );
+
     }
 }

@@ -3,14 +3,13 @@ package raph;
 import java.util.Comparator;
 import java.util.concurrent.RecursiveAction;
 
-public class ParallelMergeSort<E> extends RecursiveAction {
+public class ParallelMergeSort<E extends Comparable<E>> extends RecursiveAction {
     private final int lo, hi;
     private volatile E[] array, aux;
-    private Comparator<? super E> comp;
-    private static final int threshold = 256;
+    private static final int threshold = 1024;
 
-    public ParallelMergeSort(E[] a, int lo, int hi, E[] aux, Comparator<? super E> comp) {
-        array = a; this.lo = lo; this.hi = hi; this.aux = aux; this.comp = comp;
+    public ParallelMergeSort(E[] a, int lo, int hi, E[] aux) {
+        array = a; this.lo = lo; this.hi = hi; this.aux = aux;
     }
 
     private void sort(int lo, int hi){
@@ -33,7 +32,7 @@ public class ParallelMergeSort<E> extends RecursiveAction {
                 array[k] = aux[j++];
             }else if (j > hi){
                 array[k] = aux[i++];
-            }else if (comp.compare(aux[j], aux[i]) < 0){
+            }else if (aux[j].compareTo(aux[i]) < 0){
                 array[k] = aux[j++];
             }else{
                 array[k] = aux[i++];
@@ -53,8 +52,8 @@ public class ParallelMergeSort<E> extends RecursiveAction {
         }
         else{
             int mid = (lo + hi) / 2;
-            ParallelMergeSort<E> left = new ParallelMergeSort<>(array, lo, mid, aux, comp);
-            ParallelMergeSort<E> right = new ParallelMergeSort<>(array, mid + 1, hi, aux, comp);
+            ParallelMergeSort<E> left = new ParallelMergeSort<>(array, lo, mid, aux);
+            ParallelMergeSort<E> right = new ParallelMergeSort<>(array, mid + 1, hi, aux);
             invokeAll(left, right);
             merge(lo, mid, hi);
         }

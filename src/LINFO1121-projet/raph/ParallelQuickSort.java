@@ -3,18 +3,16 @@ package raph;
 import java.util.Comparator;
 import java.util.concurrent.RecursiveAction;
 
-public class ParallelQuickSort<T> extends RecursiveAction {
+public class ParallelQuickSort<T extends Comparable<T>> extends RecursiveAction {
 
     private final int lo;
     private final int hi;
-    public volatile T[] array;
-    private final Comparator<? super T> comp;
+    private final T[] array;
     private static final int threshold = 1024;
 
-    public ParallelQuickSort(T[] array, int lo, int hi, Comparator<? super T> comp){
+    public ParallelQuickSort(T[] array, int lo, int hi){
         this.lo = lo;
         this.hi = hi;
-        this.comp = comp;
         this.array = array;
     }
 
@@ -22,8 +20,8 @@ public class ParallelQuickSort<T> extends RecursiveAction {
         int i = lo, j = hi + 1;
         T pvt = array[lo];
         while(i < j){
-            while(comp.compare(array[++i], pvt) < 0 && i < hi);
-            while(comp.compare(pvt, array[--j]) < 0 && j > lo);
+            while(array[++i].compareTo(pvt) < 0 && i < hi);
+            while(pvt.compareTo(array[--j]) < 0 && j > lo);
             if(i < j){
                 T tmp = array[i];
                 array[i] = array[j];
@@ -40,8 +38,8 @@ public class ParallelQuickSort<T> extends RecursiveAction {
         int i = lo, j = hi + 1;
         T pvt = array[lo];
         while(i < j){
-            while(comp.compare(array[++i], pvt) < 0 && i < hi);
-            while(comp.compare(pvt, array[--j]) < 0 && j > lo);
+            while(array[++i].compareTo(pvt) < 0 && i < hi);
+            while(pvt.compareTo(array[--j]) < 0 && j > lo);
             if(i < j){
                 T tmp = array[i];
                 array[i] = array[j];
@@ -71,8 +69,8 @@ public class ParallelQuickSort<T> extends RecursiveAction {
         else {
             int pos = parallelPartition();
             if(pos < 0) return;
-            ParallelQuickSort<T> left = new ParallelQuickSort<>(array, lo, pos - 1, comp);
-            ParallelQuickSort<T> right = new ParallelQuickSort<>(array, pos + 1, hi, comp);
+            ParallelQuickSort<T> left = new ParallelQuickSort<>(array, lo, pos - 1);
+            ParallelQuickSort<T> right = new ParallelQuickSort<>(array, pos + 1, hi);
             invokeAll(left, right);
         }
     }
