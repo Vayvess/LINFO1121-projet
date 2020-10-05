@@ -16,9 +16,20 @@ public class Main {
         return true;
     }
 
+    public static void QuickSort(Integer[] array){
+        raph.QuickSort<Integer> task = new raph.QuickSort<>(array, Comparator.comparing(Integer::intValue));
+        long start = System.nanoTime();
+        task.sort();
+        long end = System.nanoTime();
+
+        long elapsedTime = end - start;
+        double elapsedTimeInSecond = (double) elapsedTime / 1_000_000_000;
+        System.out.println("QuickSort has taken " + elapsedTimeInSecond + " seconds");
+    }
+
     public static void ParallelMergeSort(Integer[] array){
         raph.ParallelMergeSort<Integer> task =
-                new raph.ParallelMergeSort<Integer>(array, 0, array.length -1, new Integer[array.length],
+                new raph.ParallelMergeSort<>(array, 0, array.length -1, new Integer[array.length],
                         Comparator.comparing(Integer::intValue));
 
         long start = System.nanoTime();
@@ -27,7 +38,7 @@ public class Main {
 
         long elapsedTime = end - start;
         double elapsedTimeInSecond = (double) elapsedTime / 1_000_000_000;
-        System.out.println(elapsedTimeInSecond + " seconds");
+        System.out.println("ParallelMergeSort has taken " + elapsedTimeInSecond + " seconds");
     }
 
     public static void ParallelQuickSort(Integer[] array){
@@ -41,16 +52,19 @@ public class Main {
 
         long elapsedTime = end - start;
         double elapsedTimeInSecond = (double) elapsedTime / 1_000_000_000;
-
-        System.out.println(elapsedTimeInSecond + " seconds");
+        System.out.println("ParallelQuickSort has taken " + elapsedTimeInSecond + " seconds");
     }
 
     public static void main(String[] args){
-        int size = 10_000_000; Random rng = new Random();
+        int size = 1_000_000; Random rng = new Random();
         Integer[] main = new Integer[size];
         for(int i = 0 ; i < size ; i++){
             main[i] = rng.nextInt(100000);
         }
+
+        Integer[] QuickSortTest = new Integer[size];
+        System.arraycopy(main, 0, QuickSortTest, 0, size);
+        QuickSort(QuickSortTest);
 
         Integer[] ParallelQuickSortTest = new Integer[size];
         System.arraycopy(main, 0, ParallelQuickSortTest, 0, size);
