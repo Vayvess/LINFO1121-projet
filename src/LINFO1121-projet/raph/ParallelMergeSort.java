@@ -1,6 +1,5 @@
 package raph;
 
-import java.util.Comparator;
 import java.util.concurrent.RecursiveAction;
 
 public class ParallelMergeSort<E extends Comparable<E>> extends RecursiveAction {
