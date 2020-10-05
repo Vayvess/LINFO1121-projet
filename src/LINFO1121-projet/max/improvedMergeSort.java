@@ -11,20 +11,20 @@ public class improvedMergeSort {
         //Fast Merge
         //Copie arr[low..middle, high..middle+1] dans le tableau aux
 
-        //Copie la première moitié du tableau arr dans aux dans l'ordre croissant
+        //Copie la première moitie du tableau arr dans aux dans l'ordre croissant
         int p = low;
         for (int k = low; k <= middle; k++) {
             aux[p] = arr[k];
             p++;
         }
-        //Copie la seconde moitié du tableau arr dans aux dans l'ordre décroissant
+        //Copie la seconde moitie du tableau arr dans aux dans l'ordre decroissant
         for (int k = high; k > middle; k--) {
             aux[p] = arr[k];
             p++;
         }
 
-        //Il ne faut plus vérifier que chacune des moitiés est vide car les deux pointeurs se rejoignent
-        //L'un va du début à la fin, l'autre va de la fin vers le début
+        //Il ne faut plus verifier que chacune des moitiés est vide car les deux pointeurs se rejoignent
+        //L'un va du debut à la fin, l'autre va de la fin vers le debut
         int i = low;
         int j = high;
         int k = low;
@@ -50,7 +50,7 @@ public class improvedMergeSort {
             sort(a, lo, middle, limit);
             sort(a, middle + 1, hi, limit);
 
-            //Skip le merge si la liste est déjà triée sur l'intervalle lo..hi
+            //Skip le merge si la liste est déjà triee sur l'intervalle lo..hi
             if (Elementary.less(a[middle + 1], a[middle])){
                 merge(a, lo, middle, hi);
             }
@@ -75,26 +75,4 @@ public class improvedMergeSort {
         sort(a, 0, a.length - 1, limit);
     }
 
-    public static void main(String[] args) {
-        Comparable[] arr = {5, 4, 7, 6, 9, 8, 4, 1, 3};
-        insertionSort(arr, 0, arr.length - 1);
-        System.out.println(Arrays.toString(arr));
-        System.out.println(Elementary.isSorted(arr));
-
-        Comparable[] arr2 = {5, 4, 7, 6, 9, 8, 4, 1, 3};
-        sort(arr2, 5);
-        System.out.println(Arrays.toString(arr2));
-        System.out.println(Elementary.isSorted(arr2));
-
-        Comparable[] arr3 = {"test", "uioadh", "pojfhd", "jlfkqds", "bbbbb"};
-        sort(arr3, 1);
-        System.out.println(Arrays.toString(arr3));
-        System.out.println(Elementary.isSorted(arr3));
-
-        Comparable[] arr4 = {1, 10, 7, 6, 9, 8, 4, 1, 3, 1, 10, 7, 6, 9, 8, 4, 1, 3, 1, 10, 7, 6, 9, 8, 4, 1, 3,
-                1, 10, 7, 6, 9, 8, 4, 1, 3, 1, 10, 7, 6, 9, 8, 4, 1, 3, 1, 10, 7, 6, 9, 8, 4, 1, 3};
-        sort(arr4, 1);
-        System.out.println(Arrays.toString(arr4));
-        System.out.println(Elementary.isSorted(arr4));
-    }
 }
