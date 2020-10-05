@@ -4,7 +4,8 @@ import java.util.concurrent.RecursiveAction;
 
 public class ParallelMergeSort<E extends Comparable<E>> extends RecursiveAction {
     private final int lo, hi;
-    private volatile E[] array, aux;
+    private final E[] array;
+    private final E[] aux;
     private static final int threshold = 1024;
 
     public ParallelMergeSort(E[] a, int lo, int hi, E[] aux) {

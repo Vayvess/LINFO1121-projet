@@ -1,12 +1,8 @@
 package raph;
 
-import java.util.Comparator;
-
 public class MergeSort {
-    private static <T extends Comparable<T>> void merge(T[] arr, T[] aux, int lo, int mid, int hi){
-        for (int k = lo; k <= hi; k++) {
-            aux[k] = arr[k];
-        }
+    public static void merge(Comparable[] arr, Comparable[] aux, int lo, int mid, int hi){
+        if (hi + 1 - lo >= 0) System.arraycopy(arr, lo, aux, lo, hi + 1 - lo);
 
         int i = lo;
         int j = mid + 1;
@@ -22,17 +18,19 @@ public class MergeSort {
             }
         }
     }
-
-    private static <T extends Comparable<T>> void mergeSort(T[] arr, T[] aux,int lo, int hi){
-        if(hi - lo > 0){
+    public static void mergeSort(Comparable[] arr, Comparable[] aux, int lo, int hi){
+        if(hi - lo > 1024){
+            QuickSort.quickSort(arr, lo, hi);
+        }
+        else{
             int mid = (lo + hi) / 2;
             mergeSort(arr, aux, lo, mid);
             mergeSort(arr, aux, mid + 1, hi);
             merge(arr, aux, lo, mid, hi);
         }
     }
-
-    public static <T extends Comparable<T>> void sort(T[] array){
-        Object[] aux = new Object[array.length];
+    public static void sort(Comparable[] arr){
+        Comparable[] aux = new Comparable[arr.length];
+        mergeSort(arr, aux, 0, arr.length - 1);
     }
 }
