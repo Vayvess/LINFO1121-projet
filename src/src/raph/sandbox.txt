@@ -1,0 +1,34 @@
+public static int partition(Integer[] array, int lo, int hi){
+        int i = lo;
+        Integer x = array[hi];
+        for (int j = lo; j < hi; j++) {
+            if(array[j].compareTo(x) < 1){
+                Integer tmp = array[i];
+                array[i] = array[j];
+                array[j] = tmp;
+                i++;
+            }
+        }
+        Integer tmp = array[i];
+        array[i] = array[hi];
+        array[hi] = tmp;
+        return i;
+    }
+
+    private static void quickSortRecur(Integer[] array, int lo, int hi){
+        if(lo < hi){
+            int pos = partition(array, lo, hi);
+            if(pos < 0) return;
+            quickSortRecur(array, lo, pos - 1);
+            quickSortRecur(array, pos + 1, hi);
+        }
+    }
+
+    private static void quickSort(Integer[] array){
+        long start = System.nanoTime();
+        long end = System.nanoTime();
+        quickSortRecur(array, 0, array.length - 1);
+        long elapsedTime = end - start;
+        double elapsedTimeInSecond = (double) elapsedTime / 1_000_000_000;
+        System.out.println(elapsedTimeInSecond + " seconds");
+    }
